@@ -2,201 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nathan Chen</title>
-    <link rel="icon" href="/img/icon.png">
-    <script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}else if(t==='light'){document.documentElement.removeAttribute('data-theme');}}catch(e){}})();</script>
-    <style>
-        html[data-theme="dark"] {
-            --dark-text-color: #949494;
-            --nice-div-color: rgb(30, 30, 30);
-            --bullet-color: rgb(90,90,90);
-            --background-color: #121212;
-            --subtle-background-darker: rgb(23, 23, 23);
-            --border-background-color: #3b3d3e;
-            --code-background-color: #242424;
-            --link-background-color: #6b6b6b;
-            --link-color: #cfcfcf;
-            --color: #e6e6e6;
-            --hr-color: dimgray;
-            --gradient-bottom: #1e1e1e;
-            --gradient-top: var(--background-color);
-            --text-primary: #e0e0e0;
-            --text-secondary: #a3a3a3;
-            --background: #121212;
-        }
-        html[data-theme="dark"] body { background-color: var(--background, var(--background-color, #121212)); color: var(--text-primary, var(--color, #e6e6e6)); }
-        @media (prefers-color-scheme: dark) {
-            html:not([data-theme="light"]) body { background-color: #121212; color: #e0e0e0; }
-        }
-    </style>
-    <link rel="stylesheet" href="/static/style.css">
-    <style>
-        /* Index-only: prevent extra scrolling by compensating for fixed header height */
-        body { height: auto; min-height: calc(100vh - 80px); }
-        .container {
-            max-width: 650px;
-            margin: 0 auto;
-            padding: 20px 20px 0 20px;
-            margin-top: 0; /* Let shared nav control top spacing */
-            position: relative;
-            z-index: 1;
-            font-size: 17px;
-        }
-
-        /* Two-column list for beliefs */
-        .beliefs-list {
-            column-count: 2;
-            column-gap: 2rem;
-        }
-        .beliefs-list li { break-inside: avoid; }
-        /* Shift only the bullet (not text) for longer last three items */
-        .beliefs-list .shift-left::before { margin-left: -4em; }
-
-        /* Desktop-only: use native bullets for correct alignment in columns */
-        @media (min-width: 769px) {
-            .beliefs-list { list-style: disc; list-style-position: outside; padding-left: 1.25em; }
-            .beliefs-list li { display: list-item; position: static; padding-left: 0; }
-            .beliefs-list li::before { content: none !important; }
-            .beliefs-list li::marker { color: var(--bullet-color); }
-            /* Force 3/3 split: break to next column after 3rd item */
-            .beliefs-list > li:nth-child(3) { break-after: column; }
-            /* Nudge right-column bullets slightly left for visual balance */
-            .beliefs-list > li:nth-child(n+4) { margin-left: -5em; }
-
-            /* Fix alignment for other lists on index page */
-            .container ul { list-style: disc; list-style-position: outside; padding-left: 1.25em; }
-            .container ul > li { display: list-item; position: static; padding-left: 0; }
-            .container ul > li::before { content: none !important; }
-            .container ul > li::marker { color: var(--bullet-color); }
-        }
-
-        @media (max-width: 768px) {
-            body { min-height: calc(100vh - 60px); }
-            .container {
-                margin-top: -35px; /* Slight upward shift on mobile */
-                font-size: 15px;
-                line-height: 1.5;
-            }
-            .beliefs-list { column-count: 1; }
-            /* Reset special bullet shift on mobile for clean single list */
-            .beliefs-list .shift-left::before { margin-left: -1em; }
-            /* Mobile bullet fix: use native bullets for clean alignment */
-            .beliefs-list { list-style: disc; list-style-position: outside; padding-left: 1.25em; }
-            .beliefs-list li { position: static; padding-left: 0; display: list-item; }
-            .beliefs-list li::before { content: none !important; }
-            .beliefs-list li::marker { color: var(--bullet-color); }
-
-            /* Apply same native bullet behavior to all content lists for alignment */
-            .container ul { list-style: disc; list-style-position: outside; padding-left: 1.25em; }
-            .container ul > li { display: list-item; position: static; padding-left: 0; }
-            .container ul > li::before { content: none !important; }
-            .container ul > li::marker { color: var(--bullet-color); }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                margin-top: 0;
-                font-size: 14px;
-                line-height: 1.5;
-            }
-        }
-    </style>
-    <style>
-        /* Subtle fade-up reveal */
-        .fade-up { opacity: 0; transform: translateY(12px); transition: opacity 420ms ease, transform 420ms ease; will-change: opacity, transform; }
-        .fade-up.is-visible { opacity: 1; transform: none; }
-    </style>
+    <title>Zizhou Liu</title>
 </head>
 
-<body>
-    <div id="particles-js"></div>
-    
-    <!-- Shared navigation injected like other pages -->
-    <script src="/js/import-nav.js"></script>
-    <script>
-        // Ensure the header is solid on mobile only (desktop stays transparent)
-        (function(){
-            function applyNavBackground(){
-                try {
-                    var wrapper = document.querySelector('.site-nav-wrapper');
-                    if (!wrapper) return;
-                    var isMobile = window.innerWidth <= 768;
-                    if (isMobile) {
-                        var explicitTheme = document.documentElement.getAttribute('data-theme');
-                        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-                        var isDark = explicitTheme === 'dark' || (prefersDark && explicitTheme !== 'light');
-                        var bg = isDark ? '#121212' : '#ffffff';
-                        wrapper.style.setProperty('background-color', bg, 'important');
-                    } else {
-                        // Remove inline override so desktop CSS can keep it transparent
-                        wrapper.style.removeProperty('background-color');
-                    }
-                } catch(e) {}
-            }
-
-            // Wait for nav to be injected, then apply
-            var attempts = 0;
-            var timer = setInterval(function(){
-                var wrapper = document.querySelector('.site-nav-wrapper');
-                if (wrapper || attempts > 30) {
-                    clearInterval(timer);
-                    applyNavBackground();
-                }
-                attempts++;
-            }, 100);
-
-            // Re-apply on system theme changes
-            if (window.matchMedia) {
-                var mq = window.matchMedia('(prefers-color-scheme: dark)');
-                if (mq && mq.addEventListener) {
-                    mq.addEventListener('change', applyNavBackground);
-                }
-            }
-
-            // Update on resize (switching mobile/desktop widths)
-            window.addEventListener('resize', applyNavBackground);
-        })();
-    </script>
-
-    <div class="container">
-        <p>hi! i'm zizhou liu</p>
-        <p>my life goal is to exploring the secrets of consciousness</p>
-        <p>i am currently studying at SUSTech.</p>
-        <p>research interests: finding……</p>
-        <p>here are some things i believe in:</p>
-        <ul class="beliefs-list">
+<body>   
+    <p>hi! i'm zizhou liu</p>
+    <p>my life goal is to exploring the secrets of consciousness</p>
+    <p>i am currently studying at SUSTech.</p>
+    <p>research interests: finding……</p>
+    <p>here are some things i believe in:</p>
+    <ul class="beliefs-list">
             <li>a</li>
-            <li class="shift-left">b</li>
-        </ul>
-        <p>here are some things i like:</p>
-        <ul>
-            <li>bugs,traveling</li>
-        </ul>
-        <p>things i don't like:</p>
-        <ul>
-            <li>fat,metro</li>
-        </ul>
-        <p>i love people and write back.12510817@mail.sustech.edu.cn</p>
-    </div>
-
-    <script src="/js/particles.js"></script>
-    <script>
-        particlesJS.load('particles-js', '/js/particlesjs-config.json', function() {
-            console.log('particles.js loaded - callback');
-        });
-    </script>
-
-    <script>
-        // Page load reveal
-        document.addEventListener('DOMContentLoaded', function(){
-            var el = document.querySelector('.container');
-            if (!el) return;
-            el.classList.add('fade-up');
-            requestAnimationFrame(function(){ el.classList.add('is-visible'); });
-        });
-    </script>
-
-    
+        <li class="shift-left">b</li>
+    </ul>
+    <p>here are some things i like:</p>
+    <ul>
+        <li>bugs,traveling</li>
+    </ul>
+    <p>things i don't like:</p>
+    <ul>
+        <li>fat,metro</li>
+    </ul>
+    <p>i love people and write back.12510817@mail.sustech.edu.cn</p>
 </body>
 </html>
