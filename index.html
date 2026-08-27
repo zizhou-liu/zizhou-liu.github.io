@@ -1,28 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>Zizhou Liu</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="我的个人博客 —— 记录技术、生活与思考" />
+  <title>我的博客</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
 </head>
+<body>
+  <div class="site">
+    <!-- 顶部导航 -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#/" data-nav="home">
+          <span class="brand-dot"></span>
+          <span class="brand-name">我的博客</span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="展开菜单">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav" id="siteNav">
+          <a href="#/" data-nav="home">首页</a>
+          <a href="#/tags" data-nav="tags">标签</a>
+          <a href="#/archive" data-nav="archive">归档</a>
+          <a href="#/about" data-nav="about">关于我</a>
+          <button class="search-toggle" id="searchToggle" aria-label="搜索">搜索</button>
+        </nav>
+      </div>
+    </header>
 
-<body>   
-    <p>hi! i'm zizhou liu</p>
-    <p>my life goal is to exploring the secrets of consciousness</p>
-    <p>i am currently studying at SUSTech.</p>
-    <p>research interests: finding……</p>
-    <p>here are some things i believe in:</p>
-    <ul class="beliefs-list">
-            <li>a</li>
-        <li class="shift-left">b</li>
-    </ul>
-    <p>here are some things i like:</p>
-    <ul>
-        <li>bugs,traveling</li>
-    </ul>
-    <p>things i don't like:</p>
-    <ul>
-        <li>fat,metro</li>
-    </ul>
-    <p>i love people and write back.12510817@mail.sustech.edu.cn</p>
+    <!-- 搜索弹层 -->
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-panel">
+        <div class="search-box">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="搜索文章标题、标签或内容关键词…"
+            autocomplete="off"
+          />
+          <button class="search-close" id="searchClose" aria-label="关闭搜索">&times;</button>
+        </div>
+        <div class="search-results" id="searchResults"></div>
+      </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <main class="site-main" id="app"></main>
+
+    <!-- 底部 -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>© <span id="year"></span> 我的博客 · 用心记录每一段旅程</p>
+        <p class="footer-sub">由纯 HTML / CSS / JavaScript 构建 · 部署于 GitHub Pages</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Markdown 渲染库（CDN） -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <!-- 文章数据（必须在 main.js 之前加载） -->
+  <script src="js/posts.js"></script>
+  <!-- 应用脚本 -->
+  <script src="js/render.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
